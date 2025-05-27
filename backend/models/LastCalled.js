@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-const LastCalledSchema = new mongoose.Schema({
-  tanggal: { type: Date, required: true, unique: true },
+const lastCalledSchema = new mongoose.Schema({
+  lab: { type: String, unique: true },
   last_called: { type: Number, default: 0 },
+  last_called_at: { type: Date, default: new Date(0) }
 });
 
-const LastCalled = mongoose.model('LastCalled', LastCalledSchema);
-
-export default LastCalled;
+export default mongoose.model('LastCalled', lastCalledSchema);

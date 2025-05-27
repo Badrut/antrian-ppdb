@@ -34,6 +34,20 @@ router.post('/add', async (req, res) => {
   }
 });
 
+router.get('/:nisn', async (req, res) => {
+  try {
+    const nisn = req.params.nisn;
+    const siswa = await Siswa.findOne({ nisn });
+
+    if (!siswa) {
+      return res.status(404).json({ message: 'Siswa tidak ditemukan' });
+    }
+
+    res.json(siswa);
+  } catch (err) {
+    res.status(500).json({ message: 'Terjadi kesalahan server', error: err.message });
+  }
+});
 
 
 router.get('/', async (req, res) => {

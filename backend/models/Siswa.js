@@ -5,14 +5,26 @@ const siswaSchema = new mongoose.Schema({
   nisn: { type: String, required: true, unique: true },
   
   checklistItems: {
-    type: [Boolean],              // <- tipe array of Boolean
+    type: [Boolean],
     default: [false, false, false, false, false],
-    validate: [arrayLimit, 'Checklist maksimal 5 item']
+    validate: [arrayLimit, 'Checklist maksimal 5 item'],
   },
 
   nomor_antrian: {
     type: Number,
-    default: null                // tidak wajib langsung punya nomor antrian
+    default: null,
+  },
+
+  // ✅ Tambahan untuk guru
+  status: {
+    type: String,
+    enum: ['success', 'failed', 'pending'],
+    default: 'pending',
+  },
+
+  keterangan: {
+    type: String,
+    default: '',
   },
 }, { timestamps: true });
 
